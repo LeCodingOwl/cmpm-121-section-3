@@ -41,7 +41,17 @@ export default class Play extends Phaser.Scene {
       )
       .setOrigin(0, 0);
 
-    this.spinner = this.add.rectangle(100, 100, 50, 50, 0x70ef80);
+    const width = 10;
+    const height = 10;
+
+    this.spinner = this.add.rectangle(
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) - 10,
+      width,
+      height,
+      0x70ef80,
+    );
+    this.spinner!.setOrigin(0, 0);
   }
 
   update(_timeMs: number, delta: number) {
