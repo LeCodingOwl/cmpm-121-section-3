@@ -1,3 +1,4 @@
+// Worked with Madison
 import * as Phaser from "phaser";
 
 import starfieldUrl from "/assets/starfield.png";
@@ -8,7 +9,9 @@ export default class Play extends Phaser.Scene {
   right?: Phaser.Input.Keyboard.Key;
 
   starfield?: Phaser.GameObjects.TileSprite;
-  spinner?: Phaser.GameObjects.Shape;
+  spaceship?: Phaser.GameObjects.Shape;
+
+  isFiring?: false;
 
   rotationSpeed = Phaser.Math.PI2 / 1000; // radians per millisecond
 
@@ -30,6 +33,7 @@ export default class Play extends Phaser.Scene {
     this.fire = this.#addKey("F");
     this.left = this.#addKey("LEFT");
     this.right = this.#addKey("RIGHT");
+    this.isFiring;
 
     this.starfield = this.add
       .tileSprite(
@@ -44,31 +48,32 @@ export default class Play extends Phaser.Scene {
     const width = 10;
     const height = 10;
 
-    this.spinner = this.add.rectangle(
+    this.spaceship = this.add.rectangle(
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) - 10,
       width,
       height,
       0x70ef80,
     );
-    this.spinner!.setOrigin(0, 0);
+    this.spaceship!.setOrigin(0, 0);
   }
 
   update() {
     this.starfield!.tilePositionX -= 4;
 
     if (this.left!.isDown) {
-      //this.spinner!.rotation -= delta * this.rotationSpeed;
-      this.spinner!.x -= 5;
+      this.spaceship!.x -= 5;
     }
     if (this.right!.isDown) {
-      //this.spinner!.rotation += delta * this.rotationSpeed;
-      this.spinner!.x += 5;
+      this.spaceship!.x += 5;
     }
 
     if (this.fire!.isDown) {
+      //this.isFiring! = true;
+      this.spaceship!.y -= 5;
+
       this.tweens.add({
-        targets: this.spinner,
+        targets: this.spaceship,
         scale: { from: 1.5, to: 1 },
         duration: 300,
         ease: Phaser.Math.Easing.Sine.Out,
