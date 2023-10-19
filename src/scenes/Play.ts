@@ -54,7 +54,7 @@ export default class Play extends Phaser.Scene {
     this.spinner!.setOrigin(0, 0);
   }
 
-  update(_timeMs: number, delta: number) {
+  update() {
     this.starfield!.tilePositionX -= 4;
 
     if (this.left!.isDown) {
