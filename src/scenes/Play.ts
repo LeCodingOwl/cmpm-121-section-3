@@ -58,10 +58,12 @@ export default class Play extends Phaser.Scene {
     this.starfield!.tilePositionX -= 4;
 
     if (this.left!.isDown) {
-      this.spinner!.rotation -= delta * this.rotationSpeed;
+      //this.spinner!.rotation -= delta * this.rotationSpeed;
+      this.spinner!.x -= 5;
     }
     if (this.right!.isDown) {
-      this.spinner!.rotation += delta * this.rotationSpeed;
+      //this.spinner!.rotation += delta * this.rotationSpeed;
+      this.spinner!.x += 5;
     }
 
     if (this.fire!.isDown) {
